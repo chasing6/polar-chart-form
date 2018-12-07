@@ -1,0 +1,72 @@
+// compileCompressed: ../css/$1.min.css
+
+$border-radius: 4px;
+
+
+@mixin segment-color( $color: red ){
+  background-color: $color;
+  $light: rgba( $color, 1);
+  &:hover{
+    background-color: $light;
+    border-color: $light ;
+  }
+}
+
+
+
+.data-field{
+  position: relative;
+  margin-left: 25px;
+  margin: 5px 0 5px 35px;
+  .data-legend{
+    position: absolute;
+    left: -35px;
+    top: 5px;
+    height: 26px;
+    width: 30px;
+    @include segment-color(blue);
+    border-radius: $border-radius;
+  }
+  input[type="text"]:disabled{
+    background-color: white;
+    border: 0;
+  }
+  input[type="number"]{
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: $border-radius;
+    width: 40px;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+#chart canvas {
+  padding: 15px;
+}
+
+#pcf-main{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  & > div{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+}
+
+$main-opacity: 0.5;
+@mixin legend-bg( $color ){
+  .data-legend{background-color: $color};
+}
+#acct{ @include legend-bg( rgba(red, $main-opacity ) ) }
+#mkt{ @include legend-bg( rgba(green, $main-opacity) ) }
+#hr{ @include legend-bg( rgba(blue, $main-opacity) ) }
+#sales{ @include legend-bg( rgba(orange, $main-opacity) ) }
+#opr{ @include legend-bg( rgba(purple, $main-opacity) ) }
