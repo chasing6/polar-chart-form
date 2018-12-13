@@ -10,7 +10,7 @@
  * Plugin Name:       Polar Chart Form
  * Plugin URI:        https://github.com/chasing6/polar-chart-form
  * Description:       Create a form driven polar chart.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Author:            Scott McCoy
  * Author URI:        https://github.com/chasing6/
  * Text Domain:       polar-chart-form
@@ -18,7 +18,7 @@
  * GitHub Plugin URI: https://github.com/chasing6/polar-chart-form
  */
 
-define('PCF_VERSION', '0.1.0');
+define('PCF_VERSION', '0.2.0');
 
 class PolarChartForm {
 
@@ -30,7 +30,7 @@ class PolarChartForm {
 
   public function register_scripts(){
     wp_register_script('chartjs', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js');
-    wp_register_script('polar-chart', plugin_dir_url(__FILE__) . 'assets/js/polar-chart.js', array('jquery', 'chartjs'), PCF_VERSION);
+    wp_register_script('polar-chart', plugin_dir_url(__FILE__) . 'assets/js/polar-chart-v1.0.0.js', array('jquery', 'chartjs'), PCF_VERSION);
 
   }
 
@@ -54,3 +54,21 @@ class PolarChartForm {
 $control = new PolarChartForm();
 
 $control->init();
+
+
+
+// convert the readme.txt to git markdown
+$composer = plugin_dir_path(__FILE__) . 'vendor/autoload.php';
+$readme = file_get_contents(plugin_dir_path(__FILE__) . 'readme.txt');
+$convertMD = false;
+
+if ( file_exists($composer) && WP_DEBUG && $convertMD ){
+
+
+  require_once( $composer );
+  $markdown = \WPReadme2Markdown\Converter::convert($readme);
+
+  $gitfile = fopen( plugin_dir_path(__FILE__) . 'README.md', 'w');
+  fwrite($gitfile, $markdown);
+  fclose($gitfile);
+}

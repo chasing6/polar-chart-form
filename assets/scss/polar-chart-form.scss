@@ -12,18 +12,13 @@ $border-radius: 4px;
   }
 }
 
-
-
 .data-field{
   position: relative;
-  margin-left: 25px;
-  margin: 5px 0 5px 35px;
+  margin: 5px 0 5px 50px;
   .data-legend{
     position: absolute;
-    left: -35px;
-    top: 5px;
-    height: 26px;
-    width: 30px;
+    left: -50px;
+    top: 0px;
     @include segment-color(blue);
     border-radius: $border-radius;
   }
@@ -32,17 +27,16 @@ $border-radius: 4px;
     border: 0;
   }
   input[type="number"]{
-    border: 1px solid #ccc;
-    padding: 5px;
     text-align: center;
-    box-sizing: border-box;
-    border-radius: $border-radius;
-    width: 40px;
   }
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+  input{
+    border-radius: $border-radius;
+    border: 1px solid #ccc;
   }
 }
 
@@ -65,8 +59,11 @@ $main-opacity: 0.5;
 @mixin legend-bg( $color ){
   .data-legend{background-color: $color};
 }
-#acct{ @include legend-bg( rgba(red, $main-opacity ) ) }
-#mkt{ @include legend-bg( rgba(green, $main-opacity) ) }
-#hr{ @include legend-bg( rgba(blue, $main-opacity) ) }
-#sales{ @include legend-bg( rgba(orange, $main-opacity) ) }
-#opr{ @include legend-bg( rgba(purple, $main-opacity) ) }
+#field1{ @include legend-bg( rgba(red, $main-opacity ) ) }
+#field2{ @include legend-bg( rgba(orange, $main-opacity) ) }
+#field3{ @include legend-bg( rgba(yellow, $main-opacity) ) }
+#field4{ @include legend-bg( rgba(green, $main-opacity) ) }
+#field5{ @include legend-bg( rgba(blue, $main-opacity) ) }
+#field6{ @include legend-bg( rgba(purple, $main-opacity) ) }
+#field7{ @include legend-bg( rgba(fuchsia, $main-opacity) ) }
+#field8{ @include legend-bg( rgba(teal, $main-opacity) ) }
