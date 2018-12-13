@@ -10,7 +10,7 @@
  * Plugin Name:       Polar Chart Form
  * Plugin URI:        https://github.com/chasing6/polar-chart-form
  * Description:       Create a form driven polar chart.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Author:            Scott McCoy
  * Author URI:        https://github.com/chasing6/
  * Text Domain:       polar-chart-form
@@ -18,7 +18,7 @@
  * GitHub Plugin URI: https://github.com/chasing6/polar-chart-form
  */
 
-define('PCF_VERSION', '0.2.0');
+define('PCF_VERSION', '0.2.1');
 
 class PolarChartForm {
 
@@ -55,20 +55,21 @@ $control = new PolarChartForm();
 
 $control->init();
 
+//pcf_convert_readme();
+
+function pcf_convert_readme(){
+  // convert the readme.txt to git markdown
+  $composer = plugin_dir_path(__FILE__) . 'vendor/autoload.php';
+  $readme = file_get_contents(plugin_dir_path(__FILE__) . 'readme.txt');
+
+  if ( file_exists($composer) && WP_DEBUG ){
 
 
-// convert the readme.txt to git markdown
-$composer = plugin_dir_path(__FILE__) . 'vendor/autoload.php';
-$readme = file_get_contents(plugin_dir_path(__FILE__) . 'readme.txt');
-$convertMD = false;
+    require_once( $composer );
+    $markdown = \WPReadme2Markdown\Converter::convert($readme);
 
-if ( file_exists($composer) && WP_DEBUG && $convertMD ){
-
-
-  require_once( $composer );
-  $markdown = \WPReadme2Markdown\Converter::convert($readme);
-
-  $gitfile = fopen( plugin_dir_path(__FILE__) . 'README.md', 'w');
-  fwrite($gitfile, $markdown);
-  fclose($gitfile);
+    $gitfile = fopen( plugin_dir_path(__FILE__) . 'README.md', 'w');
+    fwrite($gitfile, $markdown);
+    fclose($gitfile);
+  }
 }
